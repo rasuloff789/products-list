@@ -1,3 +1,4 @@
+//htmldagi elementlarni tanlab olamiz
 var addItemForm =  document.querySelector('.addItemForm');
 var addProductInput = addItemForm.querySelector('.addProductInput');
 var addItemBtn =  addItemForm.querySelector('.addItemBtn');
@@ -16,10 +17,10 @@ Summ.textContent = allSumm ;
 var allProducts = [];
 
 var counterForProduct = 0;
+//formani submit holatini eshitamiz
 addItemForm.addEventListener('submit' , function(evt){
-  // debugger;
   evt.preventDefault();
-  
+  //inputdan valuelarni olib tekshiramiz
   var addProductValue = addProductInput.value.trim();
   var productWeightValue =parseFloat( productWeightInput.value.trim() , 10 );
   var productPriceValue =parseFloat( productPriceInput.value.trim() , 10 );
@@ -33,9 +34,9 @@ addItemForm.addEventListener('submit' , function(evt){
     return;
   }
   
-  
+  //counterga 1 qo'shib qo'yamiz qaysiki tartib raqamini bildirib turadi
   counterForProduct++;
-  
+  //create elements qilib harbirini o'z o'rniga qo'yib chiqamiz va qolgani hisob-kitob
   var newElRow = document.createElement('tr');
   elAddingBody.appendChild(newElRow);
   
@@ -48,24 +49,21 @@ addItemForm.addEventListener('submit' , function(evt){
   newElRow.appendChild(newElProductName);
   newElProductName.textContent = addProductValue;
   allProducts.push(addProductValue);
-  // newElProductName.classList.add('text-truncate' , 'mw-25');
   
   var newElProductWeight = document.createElement('td');
   newElRow.appendChild(newElProductWeight);
   newElProductWeight.textContent = productWeightValue;
-  // newElProductWeight.classList.add('text-truncate');
   var newElProductPrice = document.createElement('td');
   newElRow.appendChild(newElProductPrice);
   newElProductPrice.textContent = productPriceValue;
-  // newElProductPrice.classList.add('text-truncate');
   var newElProductSumm = document.createElement('td');
   newElRow.appendChild(newElProductSumm);
   newElProductSumm.textContent = Math.round(productPriceValue * productWeightValue);
-  
+  //obshiy summani hisoblaymiz
   allSumm = allSumm + Math.round(productPriceValue * productWeightValue);
   
   Summ.textContent = allSumm ; 
-  
+  //oxirida inputlarning qiymatlarini "" ga tenglashtiramiz
   addProductInput.value = "";
   productWeightInput.value = "";
   productPriceInput.value = "";
@@ -73,16 +71,12 @@ addItemForm.addEventListener('submit' , function(evt){
   
 })
 
+//ro'yhatda bormi yo'qmi tekshirish qismi
 checkItemForm.addEventListener('submit' , function(evt){
   evt.preventDefault();
   var checkProductInputValue = checkProductInput.value.trim();
   
   checkProductInput.value = "" ;
-  // checkProductInput.focus();
-  //  if(checkProductInput.value === ""){
-  //    alert('Yozmadingiz uzr');
-  //    return;
-  //  }
   
   if (allProducts.includes(checkProductInputValue)){
     checkResult.textContent = `Bor` ;
