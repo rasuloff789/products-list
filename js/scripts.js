@@ -24,8 +24,10 @@ addItemForm.addEventListener('submit' , function(evt){
   var addProductValue = addProductInput.value.trim();
   var productWeightValue =parseFloat( productWeightInput.value.trim() , 10 );
   var productPriceValue =parseFloat( productPriceInput.value.trim() , 10 );
-  
-  if(!isNaN(addProductInput.value) || productWeightInput.value.trim() === "" || productPriceInput.value.trim() === "" || productWeightInput.value.trim() < 0 || productPriceInput.value.trim()<0){
+  var checkIsNaN = !isNaN(addProductInput.value);
+  var checkEmpty = productWeightInput.value.trim() === "" || productPriceInput.value.trim() === ""  ;
+  var checkNegative  =   productWeightInput.value.trim() < 0 || productPriceInput.value.trim()<0 ;
+  if(checkIsNaN || checkNegative || checkEmpty){
     alert(`tog'ri qiymat kiriting`);
     addProductInput.value = "";
     productWeightInput.value = "";
